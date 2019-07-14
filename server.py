@@ -7,15 +7,12 @@ socket.listen(1)
 
 new_sock, new_addr = socket.accept()
 
-new_sock.send("It's working".encode())
-
-
 message_from_client = new_sock.recv(1024)
 
-if message_from_client == "Hi server":
-    new_sock.send("It's 200OK".encode())
+if message_from_client.decode('UTF-8') == "Hi server":
+    new_sock.send("It's 200OK".encode('UTF-8'))
 else:
-    new_sock.send("404 Error".encode())
+    new_sock.send("404 Error".encode('UTF-8'))
 
 
 new_sock.close()
